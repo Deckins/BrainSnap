@@ -11,7 +11,7 @@
       <div class="nutrient mx-auto pb-3">
         <div class="nutrient-pair" v-for="([a,b],idx) in Object.entries(p.value.food.nutrients)"
           :key="idx">
-          <div>{{a}}</div>
+          <div>{{toReadable(a)}}</div>
           <div>{{b.toFixed(2)}}</div>
         </div>
       </div>
@@ -42,7 +42,37 @@ export default {
           "id": "Pumpkin Seeds",
           "description": "May help enhance memory and boost mood. Richer in zinc than many other seeds, pumpkin seeds supply this valuable mineral which is vital for enhancing memory and thinking skills. These little seeds are also full of stress-busting magnesium, B vitamins and tryptophan, the precursor to the good mood chemical serotonin."
         }
-      ]
+      ],
+      acryonymMap: {
+        'CA': 'Calcium',
+        'ENERC_KCAL':	'Energy',
+        'CHOCDF':	'Carbs',
+        'NIA':	'Niacin (B3)',
+        'CHOLE':	'Cholesterol',
+        'P':	'Phosphorus',
+        'FAMS':	'Monounsaturated',
+        'PROCNT':	'Protein',
+        'FAPU':	'Polyunsaturated',
+        'RIBF':	'Riboflavin (B2)',
+        'FASAT':	'Saturated',
+        'SUGAR':	'Sugars',
+        'FAT':	'Fat',
+        'THIA':	'Thiamin (B1)',
+        'FATRN':	'Trans',
+        'TOCPHA':	'Vitamin E',
+        'FE':	'Iron',
+        'VITA_RAE':	'Vitamin A',
+        'FIBTG':	'Fiber',
+        'VITB12':	'Vitamin B12',
+        'FOLDFE':	'Folate (Equivalent)',
+        'VITB6A':	'Vitamin B6',
+        'K':	'Potassium',
+        'VITC':	'Vitamin C',
+        'MG':	'Magnesium',
+        'VITD':	'Vitamin D',
+        'NA':	'Sodium',
+        'VITK1':	'Vitamin K',
+      }
     }
   },
   computed: {
@@ -53,8 +83,8 @@ export default {
     }
   },
   methods: {
-    readInfo(l) {
-      return this.infoMap[l]
+    toReadable(s) {
+      return this.acryonymMap[s] || s
     }
   },
   mounted() {
