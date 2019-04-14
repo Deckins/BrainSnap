@@ -70,7 +70,7 @@ export default {
 <style lang="scss" scoped>
 .info {
   .pic-container {
-    width: 100%;
+    // width: 100%;
     background-color: rgb(68, 65, 65);
     padding: 3px;
     display: flex;

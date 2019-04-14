@@ -58,6 +58,7 @@ export default {
   flex-direction: column;
 
   .logo {
+    // max-width: 500px;
     // filter: grayscale(100%) drop-shadow(3px 3px 3px gray);
   }
 
