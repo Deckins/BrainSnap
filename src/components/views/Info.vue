@@ -3,7 +3,7 @@
     <div class="pic-container mb-5">
       <img class="pic" :src="`/api/${$route.params.name}`" />
     </div>
-    <div class="food-card mb-2" v-for="(p, i) in lst" :key="i">
+    <div class="food-card mb-2" :class="isBrain(p.name) ? 'brain' : ''" v-for="(p, i) in lst" :key="i">
       <div class="title-row">
         <div class="title">{{ p.name }}</div>
         <div> {{isBrain(p.name) ? 'BRAIN FOOD' : ''}} </div>
@@ -15,6 +15,7 @@
           <div>{{b.toFixed(2)}}</div>
         </div>
       </div>
+      <div class="container mb-3" v-if="isBrain(p.name)"> {{brainfood.find(f => f.id.toUpperCase() === p.name.toUpperCase()).description}} </div>
     </div>
     <div v-if="lst.length === 0" class="food-card food-not-found mb-2">
       This does not appear to be edible
@@ -38,7 +39,7 @@ export default {
           "description": "Broccoli is packed with powerful plant compounds, including antioxidants. It's also very high in vitamin K, delivering more than 100% of the Recommended Daily Intake (RDI) in a 1-cup (91-gram) serving. This fat-soluble vitamin is essential for forming sphingolipids, a type of fat that's densely packed into brain cells. A few studies in older adults have linked a higher vitamin K intake to better memory. Beyond vitamin K, broccoli contains a number of compounds that give it anti-inflammatory and antioxidant effects, which may help protect the brain against damage."
         },
         {
-          "id": "Pumpkin Seeds",
+          "id": "Pumpkin Seed",
           "description": "May help enhance memory and boost mood. Richer in zinc than many other seeds, pumpkin seeds supply this valuable mineral which is vital for enhancing memory and thinking skills. These little seeds are also full of stress-busting magnesium, B vitamins and tryptophan, the precursor to the good mood chemical serotonin."
         }
       ],
@@ -86,7 +87,8 @@ export default {
       return this.acryonymMap[s] || s
     },
     isBrain(str) {
-      return this.brainfood.find(f => f.id == str)
+      let found = this.brainfood.find(f => f.id.toUpperCase() === str.toUpperCase())
+      return !(found == null)
     }
   },
   mounted() {
@@ -126,6 +128,9 @@ export default {
     border: 2px solid white;
     background-color: rgb(233, 161, 27);
     border-radius: 5px;
+    &.brain {
+      background-color: rgb(233, 127, 27);
+    }
     &.food-not-found {
       font-size: 25px;
       background-color: rgb(238, 105, 105);

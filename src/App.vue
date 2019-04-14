@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="pt-5">
     <div class="banner" :class="$route.path !== '/' ? 'pb-3' : ''">
-      <div class="title">
+      <div class="title" @click="$router.push({ name: 'Index' })">
         Brainergy
       </div>
       <div v-if="$route.path !== '/'">
@@ -61,6 +61,7 @@ html {
     background-color: orange;
 
     .title {
+      cursor: pointer;
       font-size: 40px;
       font-weight: 600;
 
