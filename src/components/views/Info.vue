@@ -1,6 +1,9 @@
 <template>
   <div class="">
     test
+    <pre>
+      {{ this.$route.params }}
+    </pre>
   </div>
 </template>
 

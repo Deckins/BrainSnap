@@ -39,6 +39,7 @@ export default {
       this.axios.post('http://localhost:3000/postpic', formData, {})
         .then(e => {
           console.log('a', e)
+          this.$router.push({ name: 'Info', params: e.data })
         })
         .catch(e => console.log(e));
     }

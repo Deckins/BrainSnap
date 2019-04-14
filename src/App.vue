@@ -4,7 +4,7 @@
       <div class="title">
         App Name
       </div>
-      <div v-if="$route.path !== '/'" class="mt-2">
+      <div v-if="$route.path !== '/'" class="mt-">
         <router-link tag="div" to="/" class="mx-auto back-btn">Back</router-link>
       </div>
     </div>
@@ -21,8 +21,8 @@ export default {
 <style lang="scss">
 @import url(https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css);
 body {
-padding: 0;
-margin: 0;
+  padding: 0;
+  margin: 0;
 
   background-image: linear-gradient( rgba(73,188,171, 0.95), rgba(73,188,171, 0.95) ),
     url('~@/assets/bg.png');
