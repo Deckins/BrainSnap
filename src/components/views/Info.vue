@@ -39,9 +39,13 @@ export default {
     width: 100%;
     background-color: rgb(68, 65, 65);
     padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 300px;
     .pic {
-      width: auto;
-      max-height: 300px;
+      height: 100%;
+      max-height: 300px;   
     }
   }
 
