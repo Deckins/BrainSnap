@@ -4,8 +4,8 @@
       <div class="title">
         Brainergy
       </div>
-      <div v-if="$route.path !== '/'" class="mt-">
-        <router-link tag="div" to="/" class="mx-auto back-btn">Back</router-link>
+      <div v-if="$route.path !== '/'">
+        <div @click="$router.go(-1)" class="mx-auto back-btn">Back</div>
       </div>
     </div>
     <router-view class="mt-5"/>

@@ -6,7 +6,7 @@
     <div class="food-card mb-2" v-for="(p, i) in lst" :key="i">
       <div class="title-row">
         <div class="title">{{ p.name }}</div>
-        <div> {{true ? 'BRAIN FOOD' : ''}} </div>
+        <div> {{isBrain(p.name) ? 'BRAIN FOOD' : ''}} </div>
       </div>
       <div class="nutrient mx-auto pb-3">
         <div class="nutrient-pair" v-for="([a,b],idx) in Object.entries(p.value.food.nutrients)"
@@ -28,7 +28,6 @@ export default {
   data () {
     return {
       lst: [],
-      // tbd
       brainfood: [
         {
           "id": "Fatty Fish",
@@ -85,6 +84,9 @@ export default {
   methods: {
     toReadable(s) {
       return this.acryonymMap[s] || s
+    },
+    isBrain(str) {
+      return this.brainfood.find(f => f.id == str)
     }
   },
   mounted() {
@@ -100,14 +102,6 @@ export default {
           }
         })
     });
-  },
-  watch: {
-    infoMap: {
-      handler: function(val, oldVal) {
-        this.showMap();
-      },
-      deep: true
-    }
   },
 }
 </script>
