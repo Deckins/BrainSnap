@@ -14,6 +14,9 @@
       </label>
       <router-link tag="div" class="brain-btn mb-5" to="/gallery">Gallery</router-link>
     </div>
+    <div v-if="startSpin" class="spinner-container">
+      <div class="text">LOADING</div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ export default {
   name: 'Index',
   data () {
     return {
+      startSpin: false,
     }
   },
   methods: {
@@ -36,6 +40,7 @@ export default {
 
       const formData = new FormData();
       formData.append('imageupload', file, file.filename);
+      this.startSpin = true;
       this.axios.post('/api/postpic', formData, {})
         .then(e => {
           console.log('a', e)
@@ -56,6 +61,15 @@ export default {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes fadein {
+    from { width:0;height:0;font-size:0; }
+  }
 
   .logo {
     // max-width: 500px;
@@ -78,6 +92,29 @@ export default {
     &:hover {
       background-color: rgb(233, 161, 27);
       filter: drop-shadow(3px 3px 3px gray);
+    }
+  }
+  .spinner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.466);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      animation: spin 3s linear infinite, fadein 0.5s;
+      background-color: rgb(147, 147, 221);
     }
   }
 }
