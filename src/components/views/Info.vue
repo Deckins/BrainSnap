@@ -45,7 +45,7 @@ export default {
       ],
       acryonymMap: {
         'CA': 'Calcium',
-        'ENERC_KCAL':	'Energy',
+        'ENERC_KCAL':	'Calories',
         'CHOCDF':	'Carbs',
         'NIA':	'Niacin (B3)',
         'CHOLE':	'Cholesterol',
