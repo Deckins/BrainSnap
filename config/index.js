@@ -43,8 +43,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: process.env.PUBLIC_PATH,
-
+    assetsPublicPath: '/',
+    // ^ modify when deploy <- hackathon
     /**
      * Source Maps
      */

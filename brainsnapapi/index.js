@@ -7,6 +7,7 @@ const path = require('path')
 
 app.use(formidableMiddleware());
 app.use('/img', express.static(path.join(__dirname, 'img')))
+// app.use(express.static('../dist')) // when ~deploy
 
 
 app.get('/', (req, res) => {
