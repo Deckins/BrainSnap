@@ -36,7 +36,7 @@ export default {
 
       const formData = new FormData();
       formData.append('imageupload', file, file.filename);
-      this.axios.post('http://localhost:3000/postpic', formData, {})
+      this.axios.post('/api/postpic', formData, {})
         .then(e => {
           console.log('a', e)
           this.$router.push({ name: 'Info', params: e.data })

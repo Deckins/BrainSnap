@@ -17,13 +17,13 @@ export default {
     }
   },
   mounted() {
-    this.axios.get('http://localhost:3000/getpics').then(r => {
+    this.axios.get('/api/getpics').then(r => {
       this.piclist = r.data
     })
   },
   methods: {
     geturl(pn) {
-      return `http://localhost:3000/img/${pn}`
+      return `/api/img/${pn}`
     },
   }
 }
