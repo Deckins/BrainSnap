@@ -1,9 +1,6 @@
 <template>
   <div class="">
-    test
-    <pre>
-      {{ this.$route.params }}
-    </pre>
+    <div v-for="(l, i) in descriptions" :key="i"> {{ l }} </div>
   </div>
 </template>
 
@@ -12,6 +9,11 @@ export default {
   name: 'Info',
   data () {
     return {
+    }
+  },
+  computed: {
+    descriptions() {
+      return this.$route.params.labelAnnotations.map(l => l.description);
     }
   }
 }
