@@ -2,7 +2,11 @@ const express = require('express');
 const uuidv4 = require('uuid/v4');
 const formidableMiddleware = require('express-formidable');
 const app = express();
+const fs = require('fs');
+const path = require('path')
+
 app.use(formidableMiddleware());
+app.use('/img', express.static(path.join(__dirname, 'img')))
 
 
 app.get('/', (req, res) => {
@@ -19,14 +23,22 @@ async function quickstart(path) {
 
 app.post('/postpic', async (req, res) => {
   if (req.files && req.files.imageupload) {
-    // return res.send(uuidv4());
-    let ret = await quickstart(req.files.imageupload.path);
+    const name = `img/${uuidv4()}`
+    fs.copyFile(req.files.imageupload.path, name, (err) => {
+      if (err) throw err;
+      console.log(`${req.files.imageupload.path} was copied to ${name}`);
+    });
+    let ret = await quickstart(name);
+
     return res.send(ret);
   } else {
     return res.status(400).send('No files were uploaded.');
   }
+});
 
-
+app.get('/getpics', (req, res) => {
+  const files = fs.readdirSync('img/');
+  return res.send(files);
 });
 
 // app.post('/', (req, res) => {

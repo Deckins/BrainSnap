@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="pt-5">
-    <div class="banner pb-3">
+    <div class="banner" :class="$route.path !== '/' ? 'pb-3' : ''">
       <div class="title">
         App Name
       </div>
-      <div v-if="$route.path !== '/'">
+      <div v-if="$route.path !== '/'" class="mt-2">
         <router-link tag="div" to="/" class="mx-auto back-btn">Back</router-link>
       </div>
     </div>
@@ -59,19 +59,21 @@ html {
     position: sticky;
     top: 0;
     background-color: orange;
+
     .title {
-      font-size: 90px;
+      font-size: 40px;
       font-weight: 600;
+
     }
 
     .back-btn {
       font-weight: 600;
-      font-size: 20px;
-      padding: 10px 30px;
+      font-size: 14px;
+      padding: 4px 0;
       color: #fff;
       background-color: #41586e;
       border-radius: 20px;
-      width: 200px;
+      width: 100px;
       margin: 0 0;
       cursor: pointer;
       transition: all 0.2s;

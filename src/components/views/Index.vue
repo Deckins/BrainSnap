@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <div>
-      <img class="logo mb-5" src="@/assets/logo.png">
+      <img class="logo mb-5" src="~@/assets/logo.png">
     </div>
     
     <div class="mb-5">

@@ -1,7 +1,9 @@
 <template>
   <div class="gallery">
     <div class="pic-grid container">
-      <img v-for="i in 100" :key="i" src="https://i.imgur.com/A9s5vWS.png"/>
+      <div class="picbox" v-for="(pn, idx) in piclist" :key="idx">
+        <img :src="geturl(pn)" />
+      </div>
     </div>
   </div>
 </template>
@@ -11,7 +13,18 @@ export default {
   name: 'Gallery',
   data () {
     return {
+      piclist: [],
     }
+  },
+  mounted() {
+    this.axios.get('http://localhost:3000/getpics').then(r => {
+      this.piclist = r.data
+    })
+  },
+  methods: {
+    geturl(pn) {
+      return `http://localhost:3000/img/${pn}`
+    },
   }
 }
 </script>
@@ -24,14 +37,18 @@ export default {
   align-items: center;
 
   .pic-grid {
-    
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
-    img {
-      object-fit: cover;
-      width: 100%;
-      max-height: 100%;
+
+    .picbox {
+      background-color: rgb(68, 65, 65);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 100%;
+      }
     }
   }
 }
