@@ -12,7 +12,7 @@
         <div class="nutrient-pair" v-for="([a,b],idx) in Object.entries(p.value.food.nutrients)"
           :key="idx">
           <div>{{a}}</div>
-          <div>{{b}}</div>
+          <div>{{b.toFixed(2)}}</div>
         </div>
       </div>
     </div>
