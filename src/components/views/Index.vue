@@ -1,12 +1,17 @@
 <template>
   <div class="index">
     <div>
-      <img v-for="i in 20" :key="i" class="logo mb-5 position-absolute" :style="`animation-delay: ${i/10}s;`" src="@/assets/logo.png">
-      <img class="logo mb-5 position-absolute" :style="`animation-delay: 99999999999s;`" src="@/assets/logo.png">
+      <img class="logo mb-5" src="@/assets/logo.png">
     </div>
     
     <div class="mb-5">
-      <router-link tag="div" class="brain-btn mb-5" to="/Info">Start</router-link>
+      <input id="picbucket"
+        accept="image/*"
+        capture="camera"
+        type="file" class="d-none" name="file" @change="onFileChange($event)">
+      <label for="picbucket" class="brain-btn mb-5">
+        Upload Image
+      </label>
       <router-link tag="div" class="brain-btn mb-5" to="/gallery">Gallery</router-link>
     </div>
   </div>
@@ -18,6 +23,27 @@ export default {
   data () {
     return {
     }
+  },
+  methods: {
+    onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      if (!files.length) {
+        console.log('no files');
+        return
+      }
+
+      const file = new Blob([files[0]]); // kind of works and choses stream as content type of file (not request)
+
+      const formData = new FormData();
+      formData.append('imageupload', file, file.filename);
+      this.axios.post('http://localhost:3000/postpic', formData, {})
+        .then(e => {
+          console.log('a', e)
+        })
+        .catch(e => console.log(e));
+    }
+  },
+  mounted() {
   }
 }
 </script>
@@ -30,14 +56,8 @@ export default {
   align-items: center;
   flex-direction: column;
 
-  @keyframes spin {
-      from {transform:rotate(0deg);}
-      to {transform:rotate(360deg);}
-  }
-
   .logo {
-    animation: spin 1s infinite linear;
-    filter: grayscale(100%) drop-shadow(3px 3px 3px gray);
+    // filter: grayscale(100%) drop-shadow(3px 3px 3px gray);
   }
 
   .brain-btn {
