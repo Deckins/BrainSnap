@@ -6,7 +6,10 @@
       </div>
     </div>
     <div @click="fullpn = ''" v-if="fullpn !== ''" class="fullbox">
-      <img :src="geturl(fullpn)" />
+      <img @click="goInfo(fullpn)" :src="geturl(fullpn)" />
+    </div>
+    <div v-if="startSpin" class="spinner-container">
+      <div class="text">LOADING</div>
     </div>
   </div>
 </template>
@@ -18,6 +21,7 @@ export default {
     return {
       piclist: [],
       fullpn: '',
+      startSpin: false,
     }
   },
   mounted() {
@@ -33,6 +37,14 @@ export default {
     },
     fullscreen(pn) {
       this.fullpn = pn;
+    },
+    goInfo(uuid) {
+      this.startSpin = true;
+      this.axios.get(`/api/getexistingpicinfo?uuid=${encodeURIComponent(uuid)}`)
+        .then(e => {
+          this.$router.push({ name: 'Info', params: e.data })
+        })
+        .catch(e => console.log(e));
     }
   }
 }
@@ -45,6 +57,16 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes fadein {
+    from { width:0;height:0;font-size:0; }
+  }
+
 
   .pic-grid {
     display: grid;
@@ -75,8 +97,32 @@ export default {
     align-items: center;
     background-color: rgba(19, 15, 15, 0.705);
     img {
-        max-width: 100%;
-        max-height: 100%;
+      cursor: pointer;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  .spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.466);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      animation: spin 3s linear infinite, fadein 0.5s;
+      background-color: rgb(147, 147, 221);
     }
   }
 }

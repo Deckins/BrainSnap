@@ -55,22 +55,30 @@ app.post('/postpic', async (req, res) => {
   }
 });
 
+app.get('/getexistingpicinfo', async (req, res) => {
+  let uuid = req.query.uuid;
+  if (uuid && uuid !== '') {
+    const name = `img/${uuid}`
+    const apiurl = `https://api.edamam.com/api/food-database/parser?ingr=${encodeURIComponent(name)}&app_id=dacb9331&app_key=11135c95656912ac0149d761a2bc4071`
+    let ret = await quickstart(name);
+
+    return res.send({
+      name: name,
+      value: ret
+    });
+  } else {
+    return res.status(400).send('No label was provided.');
+  }
+})
+
+// 
+
 app.get('/getpics', (req, res) => {
   const files = fs.readdirSync('img/');
   return res.send(files);
 });
 
-// app.post('/', (req, res) => {
-//   return res.send('Received a POST HTTP method');
-// });
 
-// app.put('/', (req, res) => {
-//   return res.send('Received a PUT HTTP method');
-// });
-
-// app.delete('/', (req, res) => {
-//   return res.send('Received a DELETE HTTP method');
-// });
 
 app.listen(3000, () =>
   console.log(`brainsnapapi listening on port 3000!`),
