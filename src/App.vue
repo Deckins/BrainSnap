@@ -2,7 +2,7 @@
   <div id="app" class="pt-5">
     <div class="banner" :class="$route.path !== '/' ? 'pb-3' : ''">
       <div class="title">
-        App Name
+        Brainergy
       </div>
       <div v-if="$route.path !== '/'" class="mt-">
         <router-link tag="div" to="/" class="mx-auto back-btn">Back</router-link>

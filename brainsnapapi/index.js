@@ -32,7 +32,10 @@ app.post('/postpic', async (req, res) => {
     });
     let ret = await quickstart(name);
 
-    return res.send(ret);
+    return res.send({
+      name: name,
+      value: ret
+    });
   } else {
     return res.status(400).send('No files were uploaded.');
   }
