@@ -1,0 +1,16 @@
+[
+	{
+		"id": "Fatty Fish",
+		"description": "About 60% of your brain is made of fat, and half of that fat is the omega-3 kind. Your brain uses omega-3s to build brain and nerve cells, and these fats are essential for learning and memory. Omega 3-s also have a couple additional benefits for your brain. For one thing, they may slow age-related mental decline and help ward off Alzheimer's disease. On the flip side, not getting enough omega-3s is linked to learning impairments, as well as depression. In general, eating fish seems to have positive health benefits. One study found that people who ate baked or broiled fish regularly had more gray matter in their brains. Gray matter contains most of the nerve cells that control decision making, memory and emotion."
+	},
+
+	{
+		"id": "Broccoli",
+		"description": "Broccoli is packed with powerful plant compounds, including antioxidants. It's also very high in vitamin K, delivering more than 100% of the Recommended Daily Intake (RDI) in a 1-cup (91-gram) serving. This fat-soluble vitamin is essential for forming sphingolipids, a type of fat that's densely packed into brain cells. A few studies in older adults have linked a higher vitamin K intake to better memory. Beyond vitamin K, broccoli contains a number of compounds that give it anti-inflammatory and antioxidant effects, which may help protect the brain against damage."
+	},
+
+	{
+		"id": "Pumpkin Seeds",
+		"description": "May help enhance memory and boost mood. Richer in zinc than many other seeds, pumpkin seeds supply this valuable mineral which is vital for enhancing memory and thinking skills. These little seeds are also full of stress-busting magnesium, B vitamins and tryptophan, the precursor to the good mood chemical serotonin."
+	},
+]
