@@ -96,7 +96,7 @@ export default {
       this.axios.get(`/api/getfoodinfo?label=${encodeURIComponent(d)}`)
         .then(x => {
           let searched = x.data.hints.find(x => x.food.label.toUpperCase() === d.toUpperCase())
-          if (searched) {
+          if (searched && !this.lst.find(i => i.name.toUpperCase() === d.toUpperCase())) {
             this.lst.push({
               name: d,
               value: searched,
