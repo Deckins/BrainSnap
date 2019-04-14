@@ -1,3 +1,4 @@
+// set "GOOGLE_APPLICATION_CREDENTIALS=./image_recog-894439ab6fff.json"
 const express = require('express');
 const uuidv4 = require('uuid/v4');
 const formidableMiddleware = require('express-formidable');
