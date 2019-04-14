@@ -1,9 +1,12 @@
 <template>
   <div class="gallery">
-    <div class="pic-grid container">
-      <div class="picbox" v-for="(pn, idx) in piclist" :key="idx">
+    <div class="pic-grid container pb-5">
+      <div @click="fullscreen(pn)" class="picbox" v-for="(pn, idx) in piclist" :key="idx">
         <img :src="geturl(pn)" />
       </div>
+    </div>
+    <div @click="fullpn = ''" v-if="fullpn !== ''" class="fullbox">
+      <img :src="geturl(fullpn)" />
     </div>
   </div>
 </template>
@@ -14,6 +17,7 @@ export default {
   data () {
     return {
       piclist: [],
+      fullpn: '',
     }
   },
   mounted() {
@@ -23,14 +27,20 @@ export default {
   },
   methods: {
     geturl(pn) {
-      return `/api/img/${pn}`
+      if (pn && pn !== '') {
+        return `/api/img/${pn}`
+      }
     },
+    fullscreen(pn) {
+      this.fullpn = pn;
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .gallery {
+  user-select: none;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -42,6 +52,7 @@ export default {
     grid-gap: 10px;
 
     .picbox {
+      cursor: pointer;
       background-color: rgb(68, 65, 65);
       display: flex;
       justify-content: center;
@@ -49,6 +60,23 @@ export default {
       img {
         width: 100%;
       }
+    }
+  }
+
+  .fullbox {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(19, 15, 15, 0.705);
+    img {
+        max-width: 100%;
+        max-height: 100%;
     }
   }
 }
