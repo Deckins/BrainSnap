@@ -84,10 +84,13 @@ export default {
   }
 
   .food-card {
-    background-color: rgba(233, 161, 27, 0.8);
+    border: 2px solid white;
+    background-color: rgb(233, 161, 27);
     border-radius: 5px;
     &.food-not-found {
       font-size: 25px;
+      background-color: rgb(238, 105, 105);
+      color: white;
     }
     .title-row {
       margin: 0 10px;
